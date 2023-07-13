@@ -1,12 +1,11 @@
-import {useEffect, useRef} from "react";
-import {v4 as uuidv4} from 'uuid';
+const { useEffect, useRef } = require("react");
+const { v4: uuidv4 } = require('uuid');
 
 function helloNpm() {
-    return "hello NPM"
+    return "hello NPM";
 }
 
 function useAnalytics() {
-
     const userData = useRef(null);
 
     useEffect(() => {
@@ -68,5 +67,7 @@ function useAnalytics() {
     }, []);
 }
 
-module.exports = helloNpm
-module.exports = useAnalytics
+module.exports = {
+    helloNpm,
+    useAnalytics
+};
