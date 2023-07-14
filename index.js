@@ -74,9 +74,8 @@ function useAnalyticsClick() {
 }
 
 function useHeatMap() {
-    useEffect(() => {
-
-        var heatmapInstance = h337.create({
+    window.onload = function() {
+        let heatmapInstance = h337.create({
             container: document.querySelector('.heatmap'),
             radius: 90
         });
@@ -87,7 +86,7 @@ function useHeatMap() {
                 value: 1
             });
         };
-    }, []);
+    }
 }
 
 module.exports = {
