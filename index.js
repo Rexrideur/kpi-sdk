@@ -43,15 +43,22 @@ function useAnalyticsPage() {
 function useAnalyticsClick() {
     useEffect(() => {
         const handleClick = (event) => {
-            if (userData.current) {
+           
+                let id = localStorage.getItem('userId');
+                if (!id) {
+                    id = uuidv4();
+                    if (typeof id === "string") {
+                        localStorage.setItem('userId', id);
+                    }
+                }
                 const button = (event.target)?.innerText ?? "unknown button";
                 const buttonClickData = {
-                    id: userData.current.id,
+                    id: id,
                     button,
                     date: new Date(),
                 };
                 navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton', JSON.stringify(buttonClickData));
-            }
+           
         };
 
         window.addEventListener("click", handleClick);
