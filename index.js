@@ -64,8 +64,8 @@ function useAnalyticsClick() {
         window.addEventListener("click", handleClick);
 
         const handleUnload = () => {
-            if (userData.current) {
-                userData.current = null;
+            if (id) {
+                id = null;
             }
         };
 
