@@ -2,6 +2,17 @@ import { useEffect, useRef } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 export function helloNpm() {
+    let heatmapInstance = h337.create({
+        container: document.querySelector('.heatmap'),
+        radius: 90
+    });
+    document.querySelector('.demo-wrapper').onclick = function (ev) {
+        heatmapInstance.addData({
+            x: ev.layerX,
+            y: ev.layerY,
+            value: 1
+        });
+    };
     return "hello NPM";
 }
 
