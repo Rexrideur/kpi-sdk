@@ -75,6 +75,7 @@ function useAnalyticsClick() {
 
 function useHeatMap() {
     useEffect(() => {
+        console.log("useHeatMap");
         // let heatmapInstance = h337.create({
         //     container: document.querySelector('.heatmap'),
         //     radius: 90
