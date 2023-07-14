@@ -1,4 +1,5 @@
 import {useEffect, useRef} from "react";
+
 const {v4: uuidv4} = require('uuid');
 import {h337} from "heatmap.js";
 
@@ -73,17 +74,20 @@ function useAnalyticsClick() {
 }
 
 function useHeatMap() {
-    var heatmapInstance = h337.create({
-        container: document.querySelector('.heatmap'),
-        radius: 90
-    });
-    document.querySelector('.demo-wrapper').onclick = function(ev) {
-        heatmapInstance.addData({
-            x: ev.layerX,
-            y: ev.layerY,
-            value: 1
+    useEffect(() => {
+
+        var heatmapInstance = h337.create({
+            container: document.querySelector('.heatmap'),
+            radius: 90
         });
-    };
+        document.querySelector('.demo-wrapper').onclick = function (ev) {
+            heatmapInstance.addData({
+                x: ev.layerX,
+                y: ev.layerY,
+                value: 1
+            });
+        };
+    }, []);
 }
 
 module.exports = {
