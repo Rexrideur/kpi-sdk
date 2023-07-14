@@ -29,6 +29,8 @@ export function customHeatMap() {
             value: 1
         });
     };
+
+    return "customHeatMap";
 }
 
 export function useAnalyticsPage() {
