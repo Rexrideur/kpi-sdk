@@ -1,28 +1,12 @@
 import {useEffect, useRef} from "react";
-import {v4 as uuidv4} from 'uuid';
-import h337 from 'heatmap.js';
+const {v4: uuidv4} = require('uuid');
+import h337 from "heatmap.js";
 
-export function helloNpm() {
+function helloNpm() {
     return "hello NPM";
 }
 
-export function customHeatMap() {
-    let heatmapInstance = h337.create({
-        container: document.querySelector('.heatmap'),
-        radius: 90
-    });
-    document.querySelector('.demo-wrapper').onclick = function (ev) {
-        heatmapInstance.addData({
-            x: ev.layerX,
-            y: ev.layerY,
-            value: 1
-        });
-    };
-
-    return "customHeatMap";
-}
-
-export function useAnalyticsPage() {
+function useAnalyticsPage() {
     const userData = useRef(null);
 
     useEffect(() => {
@@ -57,7 +41,7 @@ export function useAnalyticsPage() {
     }, []);
 }
 
-export function useAnalyticsClick() {
+function useAnalyticsClick() {
     useEffect(() => {
         const handleClick = (event) => {
             const target = event.target;
@@ -87,3 +71,26 @@ export function useAnalyticsClick() {
         };
     }, []);
 }
+
+function useHeatMap() {
+    useEffect(() => {
+        // let heatmapInstance = h337.create({
+        //     container: document.querySelector('.heatmap'),
+        //     radius: 90
+        // });
+        // document.querySelector('.demo-wrapper').onclick = function (ev) {
+        //     heatmapInstance.addData({
+        //         x: ev.layerX,
+        //         y: ev.layerY,
+        //         value: 1
+        //     });
+        // };
+    }, []);
+}
+
+module.exports = {
+    helloNpm,
+    useAnalyticsPage,
+    useAnalyticsClick,
+    useHeatMap,
+};
