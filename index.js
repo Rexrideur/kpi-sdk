@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import {useEffect, useRef} from "react";
+import {v4 as uuidv4} from 'uuid';
 import h337 from 'heatmap.js';
 
 export function helloNpm() {
@@ -18,19 +18,17 @@ export function helloNpm() {
 }
 
 export function customHeatMap() {
-    useEffect(() => {
-        let heatmapInstance = h337.create({
-            container: document.querySelector('.heatmap'),
-            radius: 90
+    let heatmapInstance = h337.create({
+        container: document.querySelector('.heatmap'),
+        radius: 90
+    });
+    document.querySelector('.demo-wrapper').onclick = function (ev) {
+        heatmapInstance.addData({
+            x: ev.layerX,
+            y: ev.layerY,
+            value: 1
         });
-        document.querySelector('.demo-wrapper').onclick = function (ev) {
-            heatmapInstance.addData({
-                x: ev.layerX,
-                y: ev.layerY,
-                value: 1
-            });
-        };
-    }, []);
+    };
 }
 
 export function useAnalyticsPage() {
