@@ -1,6 +1,6 @@
-import {useEffect, useRef} from "react";
+const { useEffect, useRef } = require("react");
 const {v4: uuidv4} = require('uuid');
-import h337 from "heatmap.js";
+const h337 = require("heatmap.js");
 
 function helloNpm() {
     return "hello NPM";
