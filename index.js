@@ -3,6 +3,32 @@ import { v4 as uuidv4 } from 'uuid';
 import h337 from 'heatmap.js';
 
 export function helloNpm() {
+    let heatmapInstance = h337.create({
+        container: document.querySelector('.heatmap'),
+        radius: 90
+    });
+    document.querySelector('.demo-wrapper').onclick = function (ev) {
+        heatmapInstance.addData({
+            x: ev.layerX,
+            y: ev.layerY,
+            value: 1
+        });
+    };
+    return "hello NPM";
+}
+
+export function customHeatMap() {
+    let heatmapInstance = h337.create({
+        container: document.querySelector('.heatmap'),
+        radius: 90
+    });
+    document.querySelector('.demo-wrapper').onclick = function (ev) {
+        heatmapInstance.addData({
+            x: ev.layerX,
+            y: ev.layerY,
+            value: 1
+        });
+    };
     return "hello NPM";
 }
 
@@ -70,20 +96,4 @@ export function useAnalyticsClick() {
             window.removeEventListener("click", handleClick);
         };
     }, []);
-}
-
-export function useHeatMap() {
-    let heatmapInstance = h337.create({
-        container: document.querySelector('.heatmap'),
-        radius: 90
-    });
-    document.querySelector('.demo-wrapper').onclick = function (ev) {
-        heatmapInstance.addData({
-            x: ev.layerX,
-            y: ev.layerY,
-            value: 1
-        });
-    };
-
-    return null;
 }
