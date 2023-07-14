@@ -1,13 +1,12 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import { h337 } from "heatmap.js";
 
-const {v4: uuidv4} = require('uuid');
-import {h337} from "heatmap.js";
-
-function helloNpm() {
+export function helloNpm() {
     return "hello NPM";
 }
 
-function useAnalyticsPage() {
+export function useAnalyticsPage() {
     const userData = useRef(null);
 
     useEffect(() => {
@@ -42,7 +41,7 @@ function useAnalyticsPage() {
     }, []);
 }
 
-function useAnalyticsClick() {
+export function useAnalyticsClick() {
     useEffect(() => {
         const handleClick = (event) => {
             const target = event.target;
@@ -73,7 +72,7 @@ function useAnalyticsClick() {
     }, []);
 }
 
-function useHeatMap() {
+export function useHeatMap() {
     useEffect(() => {
         console.log("useHeatMap");
         // let heatmapInstance = h337.create({
@@ -89,10 +88,3 @@ function useHeatMap() {
         // };
     }, []);
 }
-
-export default {
-    helloNpm,
-    useAnalyticsPage,
-    useAnalyticsClick,
-    useHeatMap,
-};
