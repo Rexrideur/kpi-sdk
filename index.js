@@ -84,4 +84,6 @@ export function useHeatMap() {
             value: 1
         });
     };
+
+    return null;
 }
