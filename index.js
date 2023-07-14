@@ -1,5 +1,6 @@
-const {useEffect, useRef} = require("react");
+import {useEffect, useRef} from "react";
 const {v4: uuidv4} = require('uuid');
+import {h337} from "heatmap.js";
 
 function helloNpm() {
     return "hello NPM";
@@ -65,23 +66,29 @@ function useAnalyticsClick() {
 
         window.addEventListener("click", handleClick);
 
-        const handleUnload = () => {
-            if (id) {
-                id = null;
-            }
-        };
-
-        window.addEventListener("beforeunload", handleUnload);
-
         return () => {
             window.removeEventListener("click", handleClick);
-            window.removeEventListener("beforeunload", handleUnload);
         };
     }, []);
+}
+
+function useHeatMap() {
+    var heatmapInstance = h337.create({
+        container: document.querySelector('.heatmap'),
+        radius: 90
+    });
+    document.querySelector('.demo-wrapper').onclick = function(ev) {
+        heatmapInstance.addData({
+            x: ev.layerX,
+            y: ev.layerY,
+            value: 1
+        });
+    };
 }
 
 module.exports = {
     helloNpm,
     useAnalyticsPage,
     useAnalyticsClick,
+    useHeatMap,
 };
