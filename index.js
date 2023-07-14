@@ -73,19 +73,18 @@ function useAnalyticsClick() {
 }
 
 function useHeatMap() {
-    useEffect(() => {
-        // let heatmapInstance = h337.create({
-        //     container: document.querySelector('.heatmap'),
-        //     radius: 90
-        // });
-        // document.querySelector('.demo-wrapper').onclick = function (ev) {
-        //     heatmapInstance.addData({
-        //         x: ev.layerX,
-        //         y: ev.layerY,
-        //         value: 1
-        //     });
-        // };
-    }, []);
+    let heatmapInstance = h337.create({
+        container: document.querySelector('.heatmap'),
+        radius: 90
+    });
+    document.querySelector('.demo-wrapper').onclick = function (ev) {
+        heatmapInstance.addData({
+            x: ev.layerX,
+            y: ev.layerY,
+            value: 1
+        });
+    };
+    return "useHeatMap";
 }
 
 module.exports = {
