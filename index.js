@@ -1,5 +1,5 @@
-const { useEffect, useRef } = require("react");
-const { v4: uuidv4 } = require('uuid');
+const {useEffect, useRef} = require("react");
+const {v4: uuidv4} = require('uuid');
 
 function helloNpm() {
     return "hello NPM";
@@ -43,7 +43,9 @@ function useAnalyticsPage() {
 function useAnalyticsClick() {
     useEffect(() => {
         const handleClick = (event) => {
-           
+            const target = event.target;
+
+            if (target.matches('button') || target.matches('a')) {
                 let id = localStorage.getItem('userId');
                 if (!id) {
                     id = uuidv4();
@@ -58,7 +60,7 @@ function useAnalyticsClick() {
                     date: new Date(),
                 };
                 navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton', JSON.stringify(buttonClickData));
-           
+            }
         };
 
         window.addEventListener("click", handleClick);
