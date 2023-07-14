@@ -90,7 +90,7 @@ function useHeatMap() {
     }, []);
 }
 
-module.exports = {
+export default {
     helloNpm,
     useAnalyticsPage,
     useAnalyticsClick,
