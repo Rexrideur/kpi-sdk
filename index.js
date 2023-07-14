@@ -5,7 +5,7 @@ function helloNpm() {
     return "hello NPM";
 }
 
-function useAnalytics() {
+function useAnalyticsPage() {
     const userData = useRef(null);
 
     useEffect(() => {
@@ -37,7 +37,11 @@ function useAnalytics() {
         };
 
         getUserData();
+    }, []);
+}
 
+function useAnalyticsClick() {
+    useEffect(() => {
         const handleClick = (event) => {
             if (userData.current) {
                 const button = (event.target)?.innerText ?? "unknown button";
@@ -69,5 +73,6 @@ function useAnalytics() {
 
 module.exports = {
     helloNpm,
-    useAnalytics
+    useAnalyticsPage,
+    useAnalyticsClick,
 };
