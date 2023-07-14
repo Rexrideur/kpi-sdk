@@ -75,10 +75,10 @@ function useAnalyticsClick() {
 
 function useHeatMap() {
     useEffect(() => {
-        let heatmapInstance = h337.create({
-            container: document.querySelector('.heatmap'),
-            radius: 90
-        });
+        // let heatmapInstance = h337.create({
+        //     container: document.querySelector('.heatmap'),
+        //     radius: 90
+        // });
         // document.querySelector('.demo-wrapper').onclick = function (ev) {
         //     heatmapInstance.addData({
         //         x: ev.layerX,
