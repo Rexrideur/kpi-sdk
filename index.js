@@ -35,7 +35,7 @@ const useAnalyticsPage = () => {
 
    useEffect( () => {
         console.log("hello")
-   },[])
+   })
 
 
     
