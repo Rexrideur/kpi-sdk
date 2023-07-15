@@ -92,8 +92,10 @@ function useAnalyticsClick() {
                 };
 
                 const headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.APP_SECRET
+                    accept : {
+                        'content-type': 'application/json',
+                        'authorization': 'Bearer ' + process.env.APP_SECRET
+                    }
                 };
 
                 console.log(process.env.APP_SECRET);
