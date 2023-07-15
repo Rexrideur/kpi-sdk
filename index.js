@@ -67,7 +67,10 @@ function useAnalyticsPage() {
 }
 
 function useAnalyticsClick() {
+    console.log("okclick")
+
     useEffect(() => {
+        console.log("okuseffect")
         const handleClick = (event) => {
             const target = event.target;
 
