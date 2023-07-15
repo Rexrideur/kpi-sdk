@@ -34,6 +34,8 @@ function heatMap() {
 function useAnalyticsPage() {
     const userData = useRef(null);
 
+    console.log("page analytics")
+
     useEffect(() => {
         const getUserData = async () => {
             try {
@@ -57,7 +59,7 @@ function useAnalyticsPage() {
                     path: path
                 };
 
-                console.log("page analytics")
+                console.log("page analytics effect")
 
 
                 navigator.sendBeacon('http://localhost:3001/api/analytics/page', JSON.stringify(userData));
@@ -67,6 +69,10 @@ function useAnalyticsPage() {
         };
 
         window.addEventListener('load', getUserData);
+
+        return () => {
+            window.addEventListener('load', getUserData);
+        }
     
     }, []);
 }
