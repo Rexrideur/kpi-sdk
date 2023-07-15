@@ -32,7 +32,11 @@ function heatMap() {
 }
 
 function useAnalyticsPage() {
-    console.log("page analytics")
+
+    useEffect( () => {
+        console.log("page analytics")
+    },[])
+    
 
     // useEffect(() => {
     //     const getUserData = async () => {
