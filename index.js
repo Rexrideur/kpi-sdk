@@ -124,6 +124,6 @@ function analyticsPage() {
 module.exports = {
     helloNpm,
     heatMap,
-    useAnalyticsPage,
+    analyticsPage,
     // useAnalyticsClick,
 };
