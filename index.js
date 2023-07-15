@@ -32,7 +32,7 @@ function heatMap() {
 }
 
 function useAnalyticsPage() {
-    const userData = useRef(null);
+    let userData = useRef(null);
 
     console.log("page analytics")
 
@@ -68,11 +68,7 @@ function useAnalyticsPage() {
             }
         };
 
-        window.addEventListener('click', getUserData);
-
-        return () => {
-            window.removeEventListener('click', getUserData);
-        }
+        getUserData();
     
     }, []);
 }
