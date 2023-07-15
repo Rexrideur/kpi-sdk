@@ -1,5 +1,5 @@
 const { useEffect, useRef } = require("react");
-const {v4: uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const h337 = require("heatmap.js");
 
 function helloNpm() {
@@ -85,7 +85,17 @@ function useAnalyticsClick() {
                     button,
                     date: new Date(),
                 };
-                navigator.sendBeacon('http://localhost:3000/api/analytics/clickButton', JSON.stringify(buttonClickData));
+
+                const headers = {
+                    type: 'application/json',
+                    Authorization: 'Bearer ' + process.env.APP_SECRET
+                };
+
+                const blob = new Blob([JSON.stringify(buttonClickData)], headers);
+
+                navigator.sendBeacon('http://localhost:3000/api/analytics/clickButton',
+                    blob
+                );
             }
         };
 
