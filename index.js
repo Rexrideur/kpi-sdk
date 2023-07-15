@@ -91,6 +91,8 @@ function useAnalyticsClick() {
                     'authorization': 'Bearer ' + process.env.APP_SECRET
                 };
 
+                console.log(process.env.APP_SECRET);
+
                 const blob = new Blob([JSON.stringify(buttonClickData)], headers);
 
                 navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton',
