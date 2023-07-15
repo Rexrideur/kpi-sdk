@@ -33,9 +33,9 @@ function heatMap() {
 
 function useAnalyticsPage() {
 
-    useEffect( () => {
-        console.log("page analytics")
-    },[])
+   return "Test";
+
+
     
 
     // useEffect(() => {
