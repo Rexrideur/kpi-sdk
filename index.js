@@ -34,41 +34,41 @@ function heatMap() {
 function useAnalyticsPage() {
     console.log("page analytics")
 
-    useEffect(() => {
-        const getUserData = async () => {
-            try {
-                const language = navigator.language;
-                const userAgent = navigator.userAgent;
-                const path = window.location.pathname;
+    // useEffect(() => {
+    //     const getUserData = async () => {
+    //         try {
+    //             const language = navigator.language;
+    //             const userAgent = navigator.userAgent;
+    //             const path = window.location.pathname;
 
-                let id = localStorage.getItem('userId');
-                if (!id) {
-                    id = uuidv4();
-                    if (typeof id === "string") {
-                        localStorage.setItem('userId', id);
-                    }
-                }
+    //             let id = localStorage.getItem('userId');
+    //             if (!id) {
+    //                 id = uuidv4();
+    //                 if (typeof id === "string") {
+    //                     localStorage.setItem('userId', id);
+    //                 }
+    //             }
 
-                const userData = {
-                    language: language,
-                    userAgent: userAgent,
-                    id: id,
-                    date: new Date(),
-                    path: path
-                };
+    //             const userData = {
+    //                 language: language,
+    //                 userAgent: userAgent,
+    //                 id: id,
+    //                 date: new Date(),
+    //                 path: path
+    //             };
 
-                console.log("page analytics effect")
+    //             console.log("page analytics effect")
 
 
-                navigator.sendBeacon('http://localhost:3001/api/analytics/page', JSON.stringify(userData));
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    //             navigator.sendBeacon('http://localhost:3001/api/analytics/page', JSON.stringify(userData));
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
 
-        getUserData();
+    //     getUserData();
     
-    }, []);
+    // }, []);
 }
 
 // function useAnalyticsClick() {
