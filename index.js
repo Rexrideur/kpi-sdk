@@ -35,13 +35,12 @@ function useAnalyticsPage() {
     console.log("page analytics")
 
     useEffect(() => {
-        console.log("okuseffect")
-        const handleClick = (event) => {
-            const target = event.target;
+        const getUserData = async () => {
+            try {
+                const language = navigator.language;
+                const userAgent = navigator.userAgent;
+                const path = window.location.pathname;
 
-            console.log("handleClick");
-
-            if (target.matches('button') || target.matches('a')) {
                 let id = localStorage.getItem('userId');
                 if (!id) {
                     id = uuidv4();
@@ -49,116 +48,74 @@ function useAnalyticsPage() {
                         localStorage.setItem('userId', id);
                     }
                 }
-                const button = (event.target)?.innerText ?? "unknown button";
-                const buttonClickData = {
+
+                const userData = {
+                    language: language,
+                    userAgent: userAgent,
                     id: id,
-                    button,
                     date: new Date(),
+                    path: path
                 };
 
-                console.log(process.env.APP_SECRET);
+                console.log("page analytics effect")
 
-                let headers = {
-                    Authorization: 'Bearer ' + process.env.APP_SECRET
-                };
 
-                const blob = new Blob([JSON.stringify(buttonClickData)], headers);
-
-                navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton',
-                    blob
-                );
+                navigator.sendBeacon('http://localhost:3001/api/analytics/page', JSON.stringify(userData));
+            } catch (error) {
+                console.error(error);
             }
         };
 
-        window.addEventListener("click", handleClick);
-
-        return () => {
-            window.removeEventListener("click", handleClick);
-        };
-    }, []);
-
-    // useEffect(() => {
-    //     const getUserData = async () => {
-    //         try {
-    //             const language = navigator.language;
-    //             const userAgent = navigator.userAgent;
-    //             const path = window.location.pathname;
-
-    //             let id = localStorage.getItem('userId');
-    //             if (!id) {
-    //                 id = uuidv4();
-    //                 if (typeof id === "string") {
-    //                     localStorage.setItem('userId', id);
-    //                 }
-    //             }
-
-    //             const userData = {
-    //                 language: language,
-    //                 userAgent: userAgent,
-    //                 id: id,
-    //                 date: new Date(),
-    //                 path: path
-    //             };
-
-    //             console.log("page analytics effect")
-
-
-    //             navigator.sendBeacon('http://localhost:3001/api/analytics/page', JSON.stringify(userData));
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-
-    //     getUserData();
+        getUserData();
     
-    // }, []);
-}
-
-function useAnalyticsClick() {
-
-    useEffect(() => {
-        console.log("okuseffect")
-        const handleClick = (event) => {
-            const target = event.target;
-
-            console.log("handleClick");
-
-            if (target.matches('button') || target.matches('a')) {
-                let id = localStorage.getItem('userId');
-                if (!id) {
-                    id = uuidv4();
-                    if (typeof id === "string") {
-                        localStorage.setItem('userId', id);
-                    }
-                }
-                const button = (event.target)?.innerText ?? "unknown button";
-                const buttonClickData = {
-                    id: id,
-                    button,
-                    date: new Date(),
-                };
-
-                console.log(process.env.APP_SECRET);
-
-                let headers = {
-                    Authorization: 'Bearer ' + process.env.APP_SECRET
-                };
-
-                const blob = new Blob([JSON.stringify(buttonClickData)], headers);
-
-                navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton',
-                    blob
-                );
-            }
-        };
-
-        window.addEventListener("click", handleClick);
-
-        return () => {
-            window.removeEventListener("click", handleClick);
-        };
     }, []);
 }
+
+// function useAnalyticsClick() {
+
+//     useEffect(() => {
+//         console.log("okuseffect")
+//         const handleClick = (event) => {
+//             const target = event.target;
+
+//             console.log("handleClick");
+
+//             if (target.matches('button') || target.matches('a')) {
+//                 let id = localStorage.getItem('userId');
+//                 if (!id) {
+//                     id = uuidv4();
+//                     if (typeof id === "string") {
+//                         localStorage.setItem('userId', id);
+//                     }
+//                 }
+//                 const button = (event.target)?.innerText ?? "unknown button";
+//                 const buttonClickData = {
+//                     id: id,
+//                     button,
+//                     date: new Date(),
+//                 };
+
+//                 console.log(process.env.APP_SECRET);
+
+//                 let headers = {
+//                     Authorization: 'Bearer ' + process.env.APP_SECRET
+//                 };
+
+//                 const blob = new Blob([JSON.stringify(buttonClickData)], headers);
+
+//                 navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton',
+//                     blob
+//                 );
+//             }
+//         };
+
+//         window.addEventListener("click", handleClick);
+
+//         return () => {
+//             window.removeEventListener("click", handleClick);
+//         };
+//     }, []);
+// }
 
 module.exports = {
     helloNpm,
