@@ -71,55 +71,55 @@ const useAnalyticsPage = () => {
     
 }
 
-// function useAnalyticsClick() {
+function useAnalyticsClick() {
 
-//     useEffect(() => {
-//         console.log("okuseffect")
-//         const handleClick = (event) => {
-//             const target = event.target;
+    useEffect(() => {
+        console.log("okuseffect")
+        const handleClick = (event) => {
+            const target = event.target;
 
-//             console.log("handleClick");
+            console.log("handleClick");
 
-//             if (target.matches('button') || target.matches('a')) {
-//                 let id = localStorage.getItem('userId');
-//                 if (!id) {
-//                     id = uuidv4();
-//                     if (typeof id === "string") {
-//                         localStorage.setItem('userId', id);
-//                     }
-//                 }
-//                 const button = (event.target)?.innerText ?? "unknown button";
-//                 const buttonClickData = {
-//                     id: id,
-//                     button,
-//                     date: new Date(),
-//                 };
+            if (target.matches('button') || target.matches('a')) {
+                let id = localStorage.getItem('userId');
+                if (!id) {
+                    id = uuidv4();
+                    if (typeof id === "string") {
+                        localStorage.setItem('userId', id);
+                    }
+                }
+                const button = (event.target)?.innerText ?? "unknown button";
+                const buttonClickData = {
+                    id: id,
+                    button,
+                    date: new Date(),
+                };
 
-//                 console.log(process.env.APP_SECRET);
+                console.log(process.env.APP_SECRET);
 
-//                 let headers = {
-//                     Authorization: 'Bearer ' + process.env.APP_SECRET
-//                 };
+                let headers = {
+                    Authorization: 'Bearer ' + process.env.APP_SECRET
+                };
 
-//                 const blob = new Blob([JSON.stringify(buttonClickData)], headers);
+                const blob = new Blob([JSON.stringify(buttonClickData)], headers);
 
-//                 navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton',
-//                     blob
-//                 );
-//             }
-//         };
+                navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton',
+                    blob
+                );
+            }
+        };
 
-//         window.addEventListener("click", handleClick);
+        window.addEventListener("click", handleClick);
 
-//         return () => {
-//             window.removeEventListener("click", handleClick);
-//         };
-//     }, []);
-// }
+        return () => {
+            window.removeEventListener("click", handleClick);
+        };
+    }, []);
+}
 
 module.exports = {
     helloNpm,
     heatMap,
     useAnalyticsPage,
-    // useAnalyticsClick,
+    useAnalyticsClick,
 };
