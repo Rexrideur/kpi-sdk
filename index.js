@@ -91,14 +91,11 @@ function useAnalyticsClick() {
                     date: new Date(),
                 };
 
-                const headers = {
-                    accept : {
-                        'content-type': 'application/json',
-                        'authorization': 'Bearer ' + process.env.APP_SECRET
-                    }
-                };
-
                 console.log(process.env.APP_SECRET);
+
+                let headers = {
+                    Authorization: 'Bearer ' + process.env.APP_SECRET
+                };
 
                 const blob = new Blob([JSON.stringify(buttonClickData)], headers);
 
