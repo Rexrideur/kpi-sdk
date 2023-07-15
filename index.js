@@ -33,7 +33,9 @@ function heatMap() {
 
 const useAnalyticsPage = () => {
 
-   return "Test";
+   useEffect( () => {
+        console.log("hello")
+   },[])
 
 
     
