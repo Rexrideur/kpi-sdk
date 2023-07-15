@@ -85,7 +85,7 @@ function useAnalyticsClick() {
                     button,
                     date: new Date(),
                 };
-                navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton', JSON.stringify(buttonClickData));
+                navigator.sendBeacon('http://localhost:3000/api/analytics/clickButton', JSON.stringify(buttonClickData));
             }
         };
 
