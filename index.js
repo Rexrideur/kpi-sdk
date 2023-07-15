@@ -68,10 +68,10 @@ function useAnalyticsPage() {
             }
         };
 
-        window.addEventListener('load', getUserData);
+        window.addEventListener('click', getUserData);
 
         return () => {
-            window.addEventListener('load', getUserData);
+            window.removeEventListener('click', getUserData);
         }
     
     }, []);
