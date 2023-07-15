@@ -31,7 +31,7 @@ function heatMap() {
     return "heatmap";
 }
 
-function useAnalyticsPage() {
+function analyticsPage() {
 
    return "Test";
 
