@@ -93,7 +93,7 @@ function useAnalyticsClick() {
 
                 const blob = new Blob([JSON.stringify(buttonClickData)], headers);
 
-                navigator.sendBeacon('http://localhost:3000/api/analytics/clickButton',
+                navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton',
                     blob
                 );
             }
