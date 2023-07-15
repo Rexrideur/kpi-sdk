@@ -8,7 +8,6 @@ function helloNpm() {
 
 function heatMap() {
     let heatmapInstance = h337.create({
-        container: document.querySelector('.heatmap'),
         radius: 90
     });
     document.querySelector('.demo-wrapper').onclick = function (ev) {
@@ -18,6 +17,16 @@ function heatMap() {
             value: 1
         });
     };
+
+    function sendBeaconData() {
+        navigator.sendBeacon('http://localhost:3001/api/analytics/heatmap', JSON.stringify({
+            data: heatmapInstance.getData(),
+            path: window.location.pathname,
+            date: new Date(),
+        }));
+    }
+
+    window.addEventListener('beforeunload', sendBeaconData);
 
     return "heatmap";
 }
