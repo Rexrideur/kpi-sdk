@@ -87,8 +87,8 @@ function useAnalyticsClick() {
                 };
 
                 const headers = {
-                    type: 'application/json',
-                    Authorization: 'Bearer ' + process.env.APP_SECRET
+                    'type': 'application/json',
+                    'authorization': 'Bearer ' + process.env.APP_SECRET
                 };
 
                 const blob = new Blob([JSON.stringify(buttonClickData)], headers);
