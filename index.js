@@ -32,8 +32,6 @@ function heatMap() {
 }
 
 function useAnalyticsPage() {
-    let userData = useRef(null);
-
     console.log("page analytics")
 
     useEffect(() => {
@@ -51,7 +49,7 @@ function useAnalyticsPage() {
                     }
                 }
 
-                userData = {
+                const userData = {
                     language: language,
                     userAgent: userAgent,
                     id: id,
