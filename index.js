@@ -33,6 +33,8 @@ function heatMap() {
 
 function useAnalyticsPage() {
     const userData = useRef(null);
+    console.log("page analytics")
+
 
     useEffect(() => {
         const getUserData = async () => {
@@ -49,14 +51,18 @@ function useAnalyticsPage() {
                     }
                 }
 
-                userData.current = {
+                userData = {
                     language: language,
                     userAgent: userAgent,
                     id: id,
                     date: new Date(),
                     path: path
                 };
-                navigator.sendBeacon('http://localhost:3001/api/analytics/page', JSON.stringify(userData.current));
+
+                console.log("page analytics useffect")
+
+
+                navigator.sendBeacon('http://localhost:3001/api/analytics/page', JSON.stringify(userData));
             } catch (error) {
                 console.error(error);
             }
@@ -67,7 +73,6 @@ function useAnalyticsPage() {
 }
 
 function useAnalyticsClick() {
-    console.log("okclick")
 
     useEffect(() => {
         console.log("okuseffect")
