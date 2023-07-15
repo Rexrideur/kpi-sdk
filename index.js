@@ -74,6 +74,8 @@ function useAnalyticsClick() {
         const handleClick = (event) => {
             const target = event.target;
 
+            console.log("handleClick");
+
             if (target.matches('button') || target.matches('a')) {
                 let id = localStorage.getItem('userId');
                 if (!id) {
