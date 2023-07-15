@@ -47,7 +47,7 @@ function useAnalyticsPage() {
                     date: new Date(),
                     path: path
                 };
-                // navigator.sendBeacon('/analytics', JSON.stringify(userData.current));
+                navigator.sendBeacon('http://localhost:3001/api/analytics/page', JSON.stringify(userData.current));
             } catch (error) {
                 console.error(error);
             }
