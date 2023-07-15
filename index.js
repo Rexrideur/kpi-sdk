@@ -1,5 +1,5 @@
 const { useEffect, useRef } = require("react");
-const {v4: uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const h337 = require("heatmap.js");
 
 function helloNpm() {
@@ -8,7 +8,6 @@ function helloNpm() {
 
 function heatMap() {
     let heatmapInstance = h337.create({
-        container: document.querySelector('.heatmap'),
         radius: 90
     });
     document.querySelector('.demo-wrapper').onclick = function (ev) {
@@ -18,6 +17,16 @@ function heatMap() {
             value: 1
         });
     };
+
+    function sendBeaconData() {
+        navigator.sendBeacon('http://localhost:3001/api/analytics/heatmap', JSON.stringify({
+            data: heatmapInstance.getData(),
+            path: window.location.pathname,
+            date: new Date(),
+        }));
+    }
+
+    window.addEventListener('beforeunload', sendBeaconData);
 
     return "heatmap";
 }
@@ -58,9 +67,14 @@ function useAnalyticsPage() {
 }
 
 function useAnalyticsClick() {
+    console.log("okclick")
+
     useEffect(() => {
+        console.log("okuseffect")
         const handleClick = (event) => {
             const target = event.target;
+
+            console.log("handleClick");
 
             if (target.matches('button') || target.matches('a')) {
                 let id = localStorage.getItem('userId');
@@ -76,7 +90,21 @@ function useAnalyticsClick() {
                     button,
                     date: new Date(),
                 };
-                navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton', JSON.stringify(buttonClickData));
+
+                const headers = {
+                    accept : {
+                        'content-type': 'application/json',
+                        'authorization': 'Bearer ' + process.env.APP_SECRET
+                    }
+                };
+
+                console.log(process.env.APP_SECRET);
+
+                const blob = new Blob([JSON.stringify(buttonClickData)], headers);
+
+                navigator.sendBeacon('http://localhost:3001/api/analytics/clickButton',
+                    blob
+                );
             }
         };
 
