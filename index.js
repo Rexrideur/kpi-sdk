@@ -31,7 +31,7 @@ function heatMap() {
     return "heatmap";
 }
 
-function analyticsPage() {
+const analyticsPage = () => {
 
    return "Test";
 
