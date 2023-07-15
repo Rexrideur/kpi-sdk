@@ -66,7 +66,8 @@ function useAnalyticsPage() {
             }
         };
 
-        getUserData();
+        window.addEventListener('load', getUserData);
+    
     }, []);
 }
 
