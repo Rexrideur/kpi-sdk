@@ -31,7 +31,7 @@ function heatMap() {
     return "heatmap";
 }
 
-const analyticsPage = () => {
+const useAnalyticsPage = () => {
 
    return "Test";
 
@@ -124,6 +124,6 @@ const analyticsPage = () => {
 module.exports = {
     helloNpm,
     heatMap,
-    analyticsPage,
+    useAnalyticsPage,
     // useAnalyticsClick,
 };
