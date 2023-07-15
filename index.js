@@ -121,5 +121,5 @@ module.exports = {
     helloNpm,
     heatMap,
     useAnalyticsPage,
-    useAnalyticsClick,
+    // useAnalyticsClick,
 };
